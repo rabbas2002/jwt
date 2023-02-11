@@ -1,6 +1,5 @@
 package com.example.fullstack.model;
 
-import com.example.fullstack.UserStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;

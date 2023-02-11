@@ -37,7 +37,6 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
         }
         if(passwordEncoder.matches(password,user.getPassword())){
             UsernamePasswordAuthenticationToken token =  new UsernamePasswordAuthenticationToken(userName,password,getUserRoles(user.getRole()));
-//            System.out.println(password+" "+user.getPassword()+" "+user.getRole());
             return token;
         }
         else{
@@ -53,6 +52,6 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public boolean supports(Class<?> authentication) {
-        return false;
+        return authentication.equals(UsernamePasswordAuthenticationToken.class);
     }
 }

@@ -6,6 +6,7 @@ import com.example.fullstack.model.User;
 import com.example.fullstack.repositories.RequestRepository;
 import com.example.fullstack.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +18,8 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private RequestRepository requestRepository;
-
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public User createUser(Long requestId){
         Request request = requestRepository.findById(requestId).get();
@@ -28,7 +30,8 @@ public class UserService {
         user.setDrugLicense(request.getDrugLicense());
         user.setBusinessName(request.getBusinessName());
         user.setGst(request.getGst());
-//        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setRole(request.getRole());
         requestRepository.deleteById(requestId);
         return userRepository.save(user);
     }
@@ -40,7 +43,7 @@ public class UserService {
         user1.setContactPerson(user.getContactPerson());
         user1.setDrugLicense(user.getDrugLicense());
         user1.setPhoneNumber(user.getPhoneNumber());
-//        user1.setPassword(passwordEncoder.encode(user.getPassword()));
+        user1.setPassword(passwordEncoder.encode(user.getPassword()));
         user1.setRole(user.getRole());
         user1.setUserStatus(UserStatus.ACTIVE);
         return userRepository.save(user1);

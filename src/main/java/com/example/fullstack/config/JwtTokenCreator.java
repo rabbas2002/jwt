@@ -7,9 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
-import com.example.fullstack.config.SecurityConstants;
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -49,6 +47,7 @@ public class JwtTokenCreator {
                 logger.info("Refresh Token successfully generated: {}", refresh_token);
             }
             response.setHeader(SecurityConstants.AUTHORIZATION_HEADER, jwt_token);
+
             logger.info("Token successfully generated: {}", jwt_token);
         }
     }

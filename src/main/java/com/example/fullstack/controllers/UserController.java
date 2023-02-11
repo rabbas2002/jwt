@@ -41,7 +41,6 @@ public class UserController {
     @PostMapping("register")
     public Request registerRequest(@RequestBody Request request){
         return requestService.sendRequest(request);
-
     }
     @PostMapping("admin/addProduct")
     public Product addProducts(@RequestBody Product product){
@@ -71,7 +70,6 @@ public class UserController {
     @DeleteMapping("admin/decline/{userId}")
     public void declineRequest(@PathVariable Long userId){
         requestService.declineRequest(userId);
-
     }
     @GetMapping("admin/approve/{requestId}")
     public User addUser(@PathVariable  Long requestId){
@@ -103,7 +101,5 @@ public class UserController {
         validation.validateJwtToken( request, response, true);
         generator.generateToken( request, response);
     }
-
-
 
 }

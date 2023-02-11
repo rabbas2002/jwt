@@ -18,8 +18,8 @@ public class UserSecurityConfig {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().addFilterBefore(new JwtTokenValidationFilter(), BasicAuthenticationFilter.class)
                         .addFilterAfter(new JwtTokenCreatorFilter(), BasicAuthenticationFilter.class)
                         .authorizeRequests().requestMatchers("/user/**").authenticated()
-                        .requestMatchers("/register").permitAll()
-                        .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/register","/login").permitAll()
+                        .requestMatchers("/admin/**").hasAuthority("ADMIN")
                         .and().httpBasic().and().csrf().disable();
 //        http.csrf().disable();
 //        http.authorizeRequests().requestMatchers("/register","/login").permitAll().requestMatchers("/user/**").hasAnyAuthority("RETAILER","DISTRIBUTOR","ADMIN").requestMatchers("/admin/**").hasAuthority("ADMIN").anyRequest().authenticated().and().httpBasic();

@@ -28,7 +28,7 @@ public class JwtTokenValidator {
 
         String token = request.getHeader(SecurityConstants.AUTHORIZATION_HEADER);
         String refresh = request.getHeader(SecurityConstants.REFRESH_HEADER);
-
+        System.out.println(request.getUserPrincipal());
         logger.info("Authorization Token: {}", token);
         if (token != null && !token.contains("Basic")) {
             try {
